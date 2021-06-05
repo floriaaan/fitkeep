@@ -1,16 +1,16 @@
 import 'package:fitkeep_flutter/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
 
-  SignIn({required this.toggleView});
+  Register({required this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
   String email = "";
@@ -24,7 +24,7 @@ class _SignInState extends State<SignIn> {
           backgroundColor: Colors.white,
           elevation: 0.0,
           title: Text(
-            'Sign in to FitKeep',
+            'Sign up to FitKeep',
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class _SignInState extends State<SignIn> {
             TextButton.icon(
                 onPressed: () => widget.toggleView(),
                 icon: Icon(Icons.person),
-                label: Text('Register'))
+                label: Text('Sign in'))
           ],
         ),
         body: Container(
@@ -67,7 +67,7 @@ class _SignInState extends State<SignIn> {
                       // await _auth.signInEmailPassword(email, password);
                     },
                     child: Text(
-                      'Sign in',
+                      'Register',
                       style: TextStyle(color: Colors.white),
                     ))
               ],
