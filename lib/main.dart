@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         home: Wrapper(),
+        color: Colors.amber,
       ),
     );
   }
