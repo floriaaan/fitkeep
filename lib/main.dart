@@ -20,9 +20,17 @@ class MyApp extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         home: Wrapper(),
-        color: Colors.amber,
+        color: Colors.teal,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.teal,
+          // canvasColor: Colors.transparent,
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+                primary: Colors.teal,
+              ),
+          fontFamily: 'Poppins',
+        ),
       ),
     );
   }
 }
-

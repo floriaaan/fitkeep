@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-const textInputDecoration = InputDecoration(
-    fillColor: Colors.white,
+var textInputDecoration = InputDecoration(
     filled: true,
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white, width: 2),
+    hintStyle: TextStyle(color: Colors.teal.shade500),
+    fillColor: Colors.grey.shade50,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide.none,
     ),
-    focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.blue, width: 2))
-        
-        );
+    focusColor: Colors.teal.shade100);
+
+const DefaultPadding = 20.0;
