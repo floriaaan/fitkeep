@@ -1,3 +1,4 @@
+import 'package:fitkeep_flutter/helper/theme_model.dart';
 import 'package:fitkeep_flutter/models/user.dart';
 import 'package:fitkeep_flutter/screens/home/home.dart';
 import 'package:fitkeep_flutter/screens/home/keeps.dart';
@@ -21,6 +22,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeModel>(context);
     final user = Provider.of<CustomUser?>(context);
 
     List<Widget> navWidgets = [
@@ -34,14 +36,29 @@ class _HomeWrapperState extends State<HomeWrapper> {
 
     void displayBottomSheet(BuildContext context) {
       showModalBottomSheet(
+          // barrierColor: Colors.white.withOpacity(0),
           context: context,
           builder: (ctx) {
             return Container(
+              decoration: BoxDecoration(
+                  // color: Colors.white,
+                  // border: Border.all(1.0),
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        color: themeNotifier.isDark
+                            ? Colors.black
+                            : Colors.grey.shade300,
+                        spreadRadius: 5)
+                  ]),
               height: MediaQuery.of(context).size.height * 0.3,
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(
+                  top: 5, left: 15, right: 15, bottom: 15),
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Column(
+                  mainAxisSize: MainAxisSize.max,
                   children: [
                     Row(
                       children: [
@@ -64,19 +81,45 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 3),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Icon(Icons.person_off_outlined),
+                            ),
                             Text(
                               'Log out',
                               style: TextStyle(
-                                // fontWeight: FontWeight.w700,
-                                color: Colors.black,
+                                  // fontWeight: FontWeight.w700,
+                                  // color: Colors.black,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        themeNotifier.isDark = !themeNotifier.isDark;
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 3),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Icon(
+                                themeNotifier.isDark
+                                    ? Icons.mode_night_outlined
+                                    : Icons.wb_sunny_outlined,
                               ),
                             ),
-                            Icon(
-                              Icons.person_off_outlined,
-                              color: Colors.black,
-                            )
+                            Text(
+                              'Toggle Dark Theme',
+                              style: TextStyle(
+                                  // fontWeight: FontWeight.w700,
+                                  // color: Colors.black,
+                                  ),
+                            ),
                           ],
                         ),
                       ),
@@ -89,7 +132,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: themeNotifier.isDark ? Colors.black : Colors.white,
       // appBar: AppBar(
       //   title: Text('FitKeep',
       //       style:
@@ -116,11 +159,11 @@ class _HomeWrapperState extends State<HomeWrapper> {
           SliverAppBar(
             pinned: true,
             expandedHeight: 100.0,
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 _title,
-                style: TextStyle(color: Colors.black87),
+                // style: TextStyle(color: Colors.black87),
               ),
             ),
           ),
